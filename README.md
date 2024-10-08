@@ -29,7 +29,6 @@ dengan navigasi menggunakan menu.
 - **Transaksi baru**: memulai transaksi penjualan baru
 - **Menambahkan item barang ke transaksi**
 - **Menampilkan isi transaksi**
-- **Menghapus item barang dari transaksi**
 - **Membayar transaksi**
 - **Mencetak faktur penjualan**
 
@@ -57,3 +56,7 @@ git checkout <branch>
 ```
 
 Direkomendasikan untuk menggunakan IDE untuk membuka project ini.
+
+## Isi branch
+
+* `00-DESIGN`: dokumen design UI
