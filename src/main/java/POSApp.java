@@ -7,9 +7,8 @@ public class POSApp {
   private User user;
   // menampung flag apakah program berhenti atau terus berjalan
   private boolean exit;
-  // list menu
-  private String[] menu;
   UserManagement userManagement;
+  MainMenuScreen mainMenu = new MainMenuScreen();
 
   public POSApp() {
     input = new Scanner(System.in);
@@ -17,37 +16,10 @@ public class POSApp {
     exit = false;
 
     userManagement = new UserManagement();
-
-    menu = new String[] {
-        "Managemen user",
-        "Managemen inventori",
-        "Transaksi penjualan",
-        "Laporan",
-        "Keluar",
-    };
   }
 
   private boolean isLoggedIn() {
     return user != null;
-  }
-
-  private boolean shouldExit() {
-    return exit;
-  }
-
-  private void mainMenu() {
-    while (isLoggedIn()) {
-      for (int i = 0; i < menu.length; i++) {
-        System.out.printf("%d. %s\n", i + 1, menu[i]);
-      }
-      System.out.printf("Menu (1-%d): ", menu.length);
-      Integer navigateTo = Integer.parseInt(input.nextLine());
-
-      switch (navigateTo) {
-        case 5: // Keluar
-          user = null;
-      }
-    }
   }
 
   private void loginScreen() {
@@ -66,10 +38,21 @@ public class POSApp {
     }
   }
 
+  private boolean shouldExit() {
+    return exit;
+  }
+
+  private void logout() {
+    this.user = null;
+  }
+
   public void run() {
     while (!shouldExit()) {
       loginScreen();
-      mainMenu();
+      if (isLoggedIn()) {
+        mainMenu.run();
+        logout();
+      }
     }
 
     System.out.println("Bye-bye");
