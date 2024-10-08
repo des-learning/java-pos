@@ -76,3 +76,10 @@ Ke directory `src/main/java` buka `POSApp` dan click tombol run.
   - kasir/kasir - sebagai kasir
 
   user sudah bisa login dan menampilkan menu utama
+
+* `02-extract-user-management` 
+
+   extract fungsi yang berhubungan dengan user ke class terpisah.
+   code ini merupakan implementasi dari abstraksi, setelah fungsi
+   user di extract ke class terpisah program utama sekarang mendelegasi
+   fungsi authenticate user ke user management
