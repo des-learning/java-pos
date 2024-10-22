@@ -1,5 +1,12 @@
 import java.util.Scanner;
 
+/**
+ * aplikasi POS, class ini merupakan class yang menjadi program
+ * utama dari POS.
+ *
+ * menampilkan halaman login jika belum login dan menampilkan menu
+ * utama jika sudah login
+ **/
 public class POS {
   // untuk menerima input keyboard
   Scanner input;
@@ -12,6 +19,7 @@ public class POS {
   UserManagement userManagement;
   MainMenuScreen mainMenu = new MainMenuScreen();
 
+  // constructor
   public POS() {
     input = new Scanner(System.in);
     user = null;
@@ -48,6 +56,7 @@ public class POS {
     this.user = null;
   }
 
+  // main loop untuk menjalankan POS
   public void run() {
     while (!shouldExit()) {
       loginScreen();
