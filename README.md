@@ -57,6 +57,22 @@ git checkout <branch>
 
 Direkomendasikan untuk menggunakan IDE untuk membuka project ini.
 
+## Menjalankan aplikasi
+
+Ke directory `src/main/java` buka `POSApp` dan click tombol run.
+
 ## Isi branch
 
-* `00-DESIGN`: dokumen design UI
+* `00-DESIGN`
+
+  dokumen design UI
+
+* `01-main-loop`
+
+  inisialisasi user management untuk menampung daftar user.
+  POS memiliki user default sebagai berikut:
+  - admin/admin - sebagai admin
+  - manager/manager - sebagai manager
+  - kasir/kasir - sebagai kasir
+
+  user sudah bisa login dan menampilkan menu utama
