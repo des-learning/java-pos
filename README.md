@@ -83,3 +83,11 @@ Ke directory `src/main/java` buka `POSApp` dan click tombol run.
    code ini merupakan implementasi dari abstraksi, setelah fungsi
    user di extract ke class terpisah program utama sekarang mendelegasi
    fungsi authenticate user ke user management
+
+*  `03-extract-menu-navigation`
+
+    extract fungsi menu navigation ke class tersendiri, karena
+    menu navigation akan digunakan pada beberapa screen yang berbeda
+    dengan meng-extract menu navigation kita dapat menggunakan class
+    yang sama untuk fungsi navigasi di screen-screen tersebut (code
+    reuse).

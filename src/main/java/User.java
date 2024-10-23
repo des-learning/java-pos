@@ -32,6 +32,9 @@ public class User {
     this.role = role;
   }
 
+  /**
+   * melakukan authentication terhadap user menggunakan password
+   **/
   public boolean authenticate(String password) {
     return this.password.equals(password);
   }
