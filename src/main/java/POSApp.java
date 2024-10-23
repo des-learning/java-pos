@@ -7,21 +7,16 @@ public class POSApp {
   private User user;
   // menampung flag apakah program berhenti atau terus berjalan
   private boolean exit;
-  // list user
-  private User[] users;
   // list menu
   private String[] menu;
+  UserManagement userManagement;
 
   public POSApp() {
     input = new Scanner(System.in);
     user = null;
     exit = false;
 
-    users = new User[] {
-        new User(1, "admin", "admin", "admin", "Admin"),
-        new User(2, "manager", "manager", "manager", "Manager"),
-        new User(3, "kasir", "kasir", "kasir", "Kasir"),
-    };
+    userManagement = new UserManagement();
 
     menu = new String[] {
         "Managemen user",
@@ -34,35 +29,6 @@ public class POSApp {
 
   private boolean isLoggedIn() {
     return user != null;
-  }
-
-  private User getUser(String username) {
-    for (User u : users) {
-      if (u.getUsername().equals(username)) {
-        return u;
-      }
-    }
-
-    return null;
-  }
-
-  private void loginScreen() {
-    while (!isLoggedIn()) {
-      System.out.print("Username (enter untuk keluar): ");
-      String username = input.nextLine();
-      if (username.equals("")) {
-        exit = true;
-        break;
-      }
-
-      System.out.print("Password: ");
-      String password = input.nextLine();
-
-      User loginUser = getUser(username);
-      if (loginUser.authenticate(password)) {
-        user = loginUser;
-      }
-    }
   }
 
   private boolean shouldExit() {
@@ -81,6 +47,22 @@ public class POSApp {
         case 5: // Keluar
           user = null;
       }
+    }
+  }
+
+  private void loginScreen() {
+    while (!isLoggedIn()) {
+      System.out.print("Username (enter untuk keluar): ");
+      String username = input.nextLine();
+      if (username.equals("")) {
+        exit = true;
+        break;
+      }
+
+      System.out.print("Password: ");
+      String password = input.nextLine();
+
+      user = this.userManagement.authenticate(username, password);
     }
   }
 
