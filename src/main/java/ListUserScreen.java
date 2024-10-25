@@ -26,7 +26,8 @@ public class ListUserScreen {
         if (id == 0) {
           break;
         }
-        // TODO: update user screen
+
+        new ResetUserPasswordScreen(userManagement, id).run();
       } catch (Exception e) {
       }
     } while (true);
