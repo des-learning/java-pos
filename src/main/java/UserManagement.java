@@ -1,6 +1,8 @@
 /**
  * manage user
  *
+ * implementasi proses bisnis untuk user
+ *
  * sekarang ini fungsinya masih hanya authenticate user
  */
 public class UserManagement {
@@ -25,14 +27,14 @@ public class UserManagement {
       return null;
     }
 
-    if (loginUser.authenticate(password)) {
+    if (loginUser.getPassword().equals(password)) {
       return loginUser;
     }
 
     return null;
   }
 
-  private User getUser(String username) {
+  public User getUser(String username) {
     for (User u : users) {
       if (u.getUsername().equals(username)) {
         return u;
