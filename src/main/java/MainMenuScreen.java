@@ -8,8 +8,11 @@
 public class MainMenuScreen {
   private MenuNavigation menu;
   private boolean exit;
+  private UserManagement userManagement;
 
-  public MainMenuScreen() {
+  public MainMenuScreen(UserManagement userManagement) {
+    this.userManagement = userManagement;
+
     menu = new MenuNavigation(new String[] {
         "Managemen user",
         "Managemen inventori",
@@ -26,7 +29,7 @@ public class MainMenuScreen {
 
       switch (menu.getSelectedMenu()) {
         case 1:
-          new UserManagementScreen().run();
+          new UserManagementScreen(userManagement).run();
           break;
         case 2:
           new InventoryManagementScreen().run();
