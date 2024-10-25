@@ -25,8 +25,21 @@ public class MainMenuScreen {
       menu.showAndSelectMenu();
 
       switch (menu.getSelectedMenu()) {
+        case 1:
+          new UserManagementScreen().run();
+          break;
+        case 2:
+          new InventoryManagementScreen().run();
+          break;
+        case 3:
+          new SaleTransactionScreen().run();
+          break;
+        case 4:
+          new ReportScreen().run();
+          break;
         case 5:
           exit = true;
+          break;
       }
     }
     resetState();
