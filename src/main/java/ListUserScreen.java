@@ -20,16 +20,12 @@ public class ListUserScreen {
       }
       System.out.println("-".repeat(83));
 
-      System.out.print("Pilih user (0 untuk keluar): ");
-      try {
-        int id = Integer.parseInt(input.nextLine());
+      int id = new IntegerInput("Pilih user (0 untuk keluar): ", 0).getInput();
         if (id == 0) {
           break;
-        }
-
-        new ResetUserPasswordScreen(userManagement, id).run();
-      } catch (Exception e) {
       }
+
+      new ResetUserPasswordScreen(userManagement, id).run();
     } while (true);
   }
 }
