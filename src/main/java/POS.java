@@ -16,8 +16,9 @@ public class POS {
 
   // menampung flag apakah program berhenti atau terus berjalan
   private boolean exit;
-  UserManagement userManagement;
-  MainMenuScreen mainMenu;
+  private UserManagement userManagement;
+  private InventoryManagement inventoryManagement;
+  private MainMenuScreen mainMenu;
 
   // constructor
   public POS() {
@@ -26,7 +27,8 @@ public class POS {
     exit = false;
 
     userManagement = new UserManagement();
-    mainMenu = new MainMenuScreen(userManagement);
+    inventoryManagement = new InventoryManagement();
+    mainMenu = new MainMenuScreen(userManagement, inventoryManagement);
   }
 
   private boolean isLoggedIn() {

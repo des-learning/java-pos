@@ -9,9 +9,11 @@ public class MainMenuScreen {
   private MenuNavigation menu;
   private boolean exit;
   private UserManagement userManagement;
+  private InventoryManagement inventoryManagement;
 
-  public MainMenuScreen(UserManagement userManagement) {
+  public MainMenuScreen(UserManagement userManagement, InventoryManagement inventoryManagement) {
     this.userManagement = userManagement;
+    this.inventoryManagement = inventoryManagement;
 
     menu = new MenuNavigation(new String[] {
         "Managemen user",
@@ -32,7 +34,7 @@ public class MainMenuScreen {
           new UserManagementScreen(userManagement).run();
           break;
         case 2:
-          new InventoryManagementScreen().run();
+          new InventoryManagementScreen(inventoryManagement).run();
           break;
         case 3:
           new SaleTransactionScreen().run();
