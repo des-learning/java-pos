@@ -13,9 +13,12 @@ public class POS {
 
   // menampung flag apakah program berhenti atau terus berjalan
   private boolean exit;
+
+  // dependencies
   private UserManagement userManagement;
   private InventoryManagement inventoryManagement;
   private AuthenticationManager authenticationManager;
+  private SaleTransactionManager saleTransactionManager;
   private MainMenuScreen mainMenu;
 
   // constructor
@@ -26,7 +29,8 @@ public class POS {
     userManagement = new UserManagement();
     authenticationManager = new AuthenticationManager(userManagement);
     inventoryManagement = new InventoryManagement();
-    mainMenu = new MainMenuScreen(userManagement, inventoryManagement, authenticationManager);
+    saleTransactionManager = new SaleTransactionManager();
+    mainMenu = new MainMenuScreen(userManagement, inventoryManagement, saleTransactionManager, authenticationManager);
   }
 
   private void loginScreen() {

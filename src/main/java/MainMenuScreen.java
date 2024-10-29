@@ -11,11 +11,14 @@ public class MainMenuScreen {
   private UserManagement userManagement;
   private InventoryManagement inventoryManagement;
   private AuthenticationManager authenticationManager;
+  private SaleTransactionManager saleTransactionManager;
 
-  public MainMenuScreen(UserManagement userManagement, InventoryManagement inventoryManagement, AuthenticationManager authenticationManager) {
+  public MainMenuScreen(UserManagement userManagement, InventoryManagement inventoryManagement,
+                        SaleTransactionManager saleTransactionManager, AuthenticationManager authenticationManager) {
     this.userManagement = userManagement;
     this.inventoryManagement = inventoryManagement;
     this.authenticationManager = authenticationManager;
+    this.saleTransactionManager = saleTransactionManager;
 
     menu = new MenuNavigation(new String[] {
         "Managemen user",
@@ -39,7 +42,7 @@ public class MainMenuScreen {
           new InventoryManagementScreen(inventoryManagement).run();
           break;
         case 3:
-          new SaleTransactionScreen().run();
+          new SaleTransactionScreen(this.inventoryManagement, this.saleTransactionManager, this.authenticationManager.getAuthenticatedUser()).run();
           break;
         case 4:
           new ReportScreen().run();

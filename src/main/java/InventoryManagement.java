@@ -55,6 +55,10 @@ public class InventoryManagement {
         return products.values().stream().filter((Product p) -> p.getId() == id).findFirst().orElse(null);
     }
 
+    public Product getProductBySKU(String SKU) {
+        return products.values().stream().filter((Product p) -> p.getSKU().equals(SKU)).findFirst().orElse(null);
+    }
+
     public Collection<Product> list() {
         return products.values();
     }
