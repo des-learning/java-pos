@@ -11,32 +11,26 @@ public class POS {
   // untuk menerima input keyboard
   Scanner input;
 
-  // menampung user yang sedang login, null berarti belum login
-  private User user;
-
   // menampung flag apakah program berhenti atau terus berjalan
   private boolean exit;
   private UserManagement userManagement;
   private InventoryManagement inventoryManagement;
+  private AuthenticationManager authenticationManager;
   private MainMenuScreen mainMenu;
 
   // constructor
   public POS() {
     input = new Scanner(System.in);
-    user = null;
     exit = false;
 
     userManagement = new UserManagement();
+    authenticationManager = new AuthenticationManager(userManagement);
     inventoryManagement = new InventoryManagement();
-    mainMenu = new MainMenuScreen(userManagement, inventoryManagement);
-  }
-
-  private boolean isLoggedIn() {
-    return user != null;
+    mainMenu = new MainMenuScreen(userManagement, inventoryManagement, authenticationManager);
   }
 
   private void loginScreen() {
-    while (!isLoggedIn()) {
+    while (!this.authenticationManager.isLoggedIn()) {
       System.out.print("Username (enter untuk keluar): ");
       String username = input.nextLine();
       if (username.equals("")) {
@@ -47,7 +41,7 @@ public class POS {
       System.out.print("Password: ");
       String password = input.nextLine();
 
-      user = this.userManagement.authenticate(username, password);
+      this.authenticationManager.authenticate(username, password);
     }
   }
 
@@ -55,18 +49,14 @@ public class POS {
     return exit;
   }
 
-  private void logout() {
-    this.user = null;
-  }
-
   // main loop untuk menjalankan POS
   public void run() {
     while (!shouldExit()) {
       loginScreen();
 
-      if (isLoggedIn()) {
+      if (this.authenticationManager.isLoggedIn()) {
         mainMenu.run();
-        logout();
+        this.authenticationManager.logout();
       }
     }
 

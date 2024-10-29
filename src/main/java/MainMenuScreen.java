@@ -10,10 +10,12 @@ public class MainMenuScreen {
   private boolean exit;
   private UserManagement userManagement;
   private InventoryManagement inventoryManagement;
+  private AuthenticationManager authenticationManager;
 
-  public MainMenuScreen(UserManagement userManagement, InventoryManagement inventoryManagement) {
+  public MainMenuScreen(UserManagement userManagement, InventoryManagement inventoryManagement, AuthenticationManager authenticationManager) {
     this.userManagement = userManagement;
     this.inventoryManagement = inventoryManagement;
+    this.authenticationManager = authenticationManager;
 
     menu = new MenuNavigation(new String[] {
         "Managemen user",
