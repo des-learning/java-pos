@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * manage user
@@ -78,8 +77,33 @@ public class UserManagement {
     return null;
   }
 
+  public User getById(int id) {
+    for (User u : users) {
+      if (u.getId() == id) {
+        return u;
+      }
+    }
+
+    return null;
+  }
+
   public List<User> list() {
     return users;
+  }
+
+  // update logic
+  public User changePassword(int id, String password) {
+    if (password.isBlank()) {
+      throw new IllegalArgumentException("invalid password");
+    }
+
+    User user = getById(id);
+    if (user == null) {
+      return null;
+    }
+
+    user.setPassword(password);
+    return user;
   }
 
   // Generate next id untuk user, logic ini masih banyak flaw nya
