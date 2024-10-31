@@ -1,5 +1,7 @@
 /**
  * menampung informasi user dan role
+ * POJO - Plain Old Java Object
+ * class ini cuma berfungsi sebagai model tanpa ada logic bisnis
  */
 public class User {
   private int id;
@@ -24,6 +26,15 @@ public class User {
     return role;
   }
 
+  public String getPassword() {
+    return password;
+  }
+
+  @Override
+  public String toString() {
+    return "User [id=" + id + ", name=" + name + ", username=" + username + ", role=" + role + "]";
+  }
+
   public User(int id, String name, String username, String password, String role) {
     this.id = id;
     this.name = name;
@@ -32,10 +43,23 @@ public class User {
     this.role = role;
   }
 
-  /**
-   * melakukan authentication terhadap user menggunakan password
-   **/
-  public boolean authenticate(String password) {
-    return this.password.equals(password);
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
+  public void setRole(String role) {
+    this.role = role;
   }
 }

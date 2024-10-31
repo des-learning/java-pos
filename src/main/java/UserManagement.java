@@ -1,16 +1,24 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * manage user
+ *
+ * implementasi proses bisnis untuk user
  *
  * sekarang ini fungsinya masih hanya authenticate user
  */
 public class UserManagement {
-  private User[] users;
+  private List<User> users;
 
   public UserManagement() {
-    users = new User[] {
-        new User(1, "admin", "admin", "admin", "Admin"),
-        new User(2, "manager", "manager", "manager", "Manager"),
-        new User(3, "kasir", "kasir", "kasir", "Kasir"),
+    users = new ArrayList<User>() {
+      {
+        add(new User(1, "admin", "admin", "admin", "Admin"));
+        add(new User(2, "manager", "manager", "manager", "Manager"));
+        add(new User(3, "kasir", "kasir", "kasir", "Kasir"));
+      }
     };
   }
 
@@ -20,19 +28,47 @@ public class UserManagement {
    * jika authentication gagal, mengembalikan null
    **/
   public User authenticate(String username, String password) {
-    User loginUser = getUser(username);
+    User loginUser = getByUsername(username);
     if (loginUser == null) {
       return null;
     }
 
-    if (loginUser.authenticate(password)) {
+    if (loginUser.getPassword().equals(password)) {
       return loginUser;
     }
 
     return null;
   }
 
-  private User getUser(String username) {
+  // Create Logic
+  public User create(String name, String username, String password, String role) {
+    if (!(role.equals("admin") || role.equals("manager") || role.equals("kasir"))) {
+      throw new IllegalArgumentException("invalid role");
+    }
+
+    if (name.isBlank()) {
+      throw new IllegalArgumentException("invalid name");
+    }
+
+    if (username.isBlank()) {
+      throw new IllegalArgumentException("invalid username");
+    }
+
+    if (password.isBlank()) {
+      throw new IllegalArgumentException("invalid password");
+    }
+
+    if (getByUsername(username) != null) {
+      throw new IllegalArgumentException("user already exists");
+    }
+
+    User newUser = new User(getNextId(), name, username, password, role);
+    users.add(newUser);
+    return newUser;
+  }
+
+  // Read Logic
+  public User getByUsername(String username) {
     for (User u : users) {
       if (u.getUsername().equals(username)) {
         return u;
@@ -40,5 +76,15 @@ public class UserManagement {
     }
 
     return null;
+  }
+
+  public List<User> list() {
+    return users;
+  }
+
+  // Generate next id untuk user, logic ini masih banyak flaw nya
+  private int getNextId() {
+    User lastUser = users.getLast();
+    return lastUser == null ? 1 : lastUser.getId() + 1;
   }
 }

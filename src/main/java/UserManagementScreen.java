@@ -1,8 +1,11 @@
 public class UserManagementScreen {
   private MenuNavigation menu;
   private boolean exit;
+  private UserManagement userManagement;
 
-  public UserManagementScreen() {
+  public UserManagementScreen(UserManagement userManagement) {
+    this.userManagement = userManagement;
+
     menu = new MenuNavigation(new String[] {
         "Tambah User Baru",
         "List User",
@@ -17,10 +20,10 @@ public class UserManagementScreen {
 
       switch (menu.getSelectedMenu()) {
         case 1:
-          System.out.println("Tampilkan screen user baru");
+          new NewUserScreen(userManagement).run();
           break;
         case 2:
-          System.out.println("Tampilkan screen list user");
+          new ListUserScreen(userManagement).run();
           break;
         case 3:
           exit = true;

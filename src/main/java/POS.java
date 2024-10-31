@@ -17,7 +17,7 @@ public class POS {
   // menampung flag apakah program berhenti atau terus berjalan
   private boolean exit;
   UserManagement userManagement;
-  MainMenuScreen mainMenu = new MainMenuScreen();
+  MainMenuScreen mainMenu;
 
   // constructor
   public POS() {
@@ -26,6 +26,7 @@ public class POS {
     exit = false;
 
     userManagement = new UserManagement();
+    mainMenu = new MainMenuScreen(userManagement);
   }
 
   private boolean isLoggedIn() {
