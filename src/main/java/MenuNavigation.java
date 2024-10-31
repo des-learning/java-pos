@@ -22,15 +22,8 @@ public class MenuNavigation {
       System.out.printf("%d. %s\n", i + 1, menu[i]);
     }
 
-    while (true) {
-      try {
-        System.out.printf("Menu (1-%d): ", menu.length);
-        this.selectedMenu = Integer.parseInt(input.nextLine());
-        break;
-      } catch (Exception e) {
-        // TODO: handle exception here
-      }
-    }
+    String prompt = "Menu (1-" + menu.length + "): ";
+    this.selectedMenu = new IntegerInput(prompt, 0).getInput();
   }
 
   public int getSelectedMenu() {
