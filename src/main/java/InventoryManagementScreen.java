@@ -1,13 +1,15 @@
 public class InventoryManagementScreen {
   private MenuNavigation menu;
   private boolean exit;
+  private InventoryManagement inventoryManagement;
 
-  public InventoryManagementScreen() {
+  public InventoryManagementScreen(InventoryManagement inventoryManagement) {
     menu = new MenuNavigation(new String[] {
         "Tambah produk baru",
         "List produk",
         "Kembali ke menu utama",
     });
+    this.inventoryManagement = inventoryManagement;
     resetState();
   }
 
@@ -17,10 +19,10 @@ public class InventoryManagementScreen {
 
       switch (menu.getSelectedMenu()) {
         case 1:
-          System.out.println("Tampilkan screen tambah produk baru");
+          new NewProductScreen(inventoryManagement).run();
           break;
         case 2:
-          System.out.println("Tampilkan screen list produk");
+          new ListProductScreen(inventoryManagement).run();
           break;
         case 3:
           exit = true;
